@@ -14,12 +14,11 @@ def score_graph(arr_man, arr_woman):
 
     # arr_man이랑 arr_woman 배열 갯수가 같음
     for i in range(len(arr_man)):
-        if arr_man[i][1] == input_subj:
-            stand_score_man.append(arr_man[i][2])
-            pp_num_man.append(arr_man[i][3])
+        stand_score_man.append(arr_man[i][2])
+        pp_num_man.append(arr_man[i][3])
 
-            stand_score_woman.append(arr_woman[i][2])
-            pp_num_woman.append(arr_woman[i][3])
+        stand_score_woman.append(arr_woman[i][2])
+        pp_num_woman.append(arr_woman[i][3])
 
     x1 = np.array(stand_score_man)
     y1 = np.array(pp_num_man)
