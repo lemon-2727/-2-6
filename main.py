@@ -4,12 +4,14 @@ import select_subject as ss
 import extract
 import Drawinggraph as dg
 
+# 파일 열기 시도, 열리지 않는 등 에러 발생 시 execpt 로 이동
 try:   
     file = open('20231231.csv', 'r', encoding='CP949')
 
 except:
     print("에러가 발생했습니다. 다시 시도해 주세요.")
 
+# 문제 없이 파일을 읽을 수 있는 경우
 else:
     selected_subjects = ss.select(file)
 
@@ -23,4 +25,4 @@ else:
 
     dg.score_graph(wanted_sub_m, wanted_sub_f)
 
-    
+    exit()
