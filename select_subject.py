@@ -1,7 +1,8 @@
 import csv
 import numpy as np
 
-
+#input  : file handle
+#output : [과목 분류, 세부 과목명] 이 과목별로 저장되어 있는 2차원 ndarray
 def find_subjects(file):
     data = []
 
@@ -20,7 +21,10 @@ def find_subjects(file):
 
     return sorted_subjects
 
-
+# input  : sjt_arr - [과목 분류, 세부 과목명] 이 과목별로 저장되어 있는 2차원 ndarray,
+#          input_sjt : 사용자가 입력한 세부 과목명
+#          selected_subjects : [선택된 과목의 분류, 선택된 세부 과목명] 형태의 1차원 배열
+# output : 사용자가 입력한 세부 과목명의 존재 여부
 def input_subject_check(sjt_arr, input_sjt, selected_subjects):
 
     extc = False
@@ -34,7 +38,8 @@ def input_subject_check(sjt_arr, input_sjt, selected_subjects):
     return extc
 
 
-
+# input  : file handle
+# output : [과목 분류, 세부 과목명] 이 과목별로 저장되어 있는 2차원 ndarray
 def select(file):
 
     sjt_arr = find_subjects(file)
@@ -56,3 +61,4 @@ def select(file):
         input_subject = input()
         
     return selected_subjects
+
