@@ -2,7 +2,7 @@ import csv
 import numpy as np
 
 
-def select(file):
+def find_subjects(file):
     data = []
 
     columns = [0, 1]
@@ -10,7 +10,6 @@ def select(file):
     subjects = np.genfromtxt(file, delimiter=',', usecols=columns, skip_header=1, dtype=str, encoding='CP949')
 
     unique_subjects = np.unique(subjects, axis=0)
-    #print(unique_subjects)
 
     order = ['국어', '수학', '사회탐구', '과학탐구', '직업탐구']
 
@@ -18,39 +17,42 @@ def select(file):
     sort_indices = np.argsort([order_dict[row[0]] for row in unique_subjects])
 
     sorted_subjects = unique_subjects[sort_indices]
-    secondary_name_subject = [0 for i in range(len(sorted_subjects))]
+
+    return sorted_subjects
+
+
+def input_subject_check(sjt_arr, input_sjt, selected_subjects):
+
+    extc = False
+
+    if input_sjt in sjt_arr[:, 1]:
+        extc = True 
+        index = np.where(sjt_arr[:, 1] == input_sjt)[0][0]
+        selected_subjects[0] = sjt_arr[index][0]
+        selected_subjects[1] = sjt_arr[index][1]
+    
+    return extc
 
 
 
+def select(file):
+
+    sjt_arr = find_subjects(file)
 
     year = 2023
 
     print("이 수능 데이터는 %d 년의 데이터입니다. 연도를 선택하세요." %year)
-    selected_year = input()
+    input_year = input()
 
-
-
-    i = 0
-    for subject in sorted_subjects:
+    for subject in sjt_arr:
         print(subject[0], ":", subject[1])
-        secondary_name_subject[i] = str(subject[1])
-        i += 1
+
+    print("\n이 수능 데이터에 존재하는 과목은 위와 같습니다.\n조회를 원하시는 세부과목을 선택하세요.")
+    input_subject = input()
+
+    selected_subjects = [0, 0]
+    while not input_subject_check(sjt_arr, input_subject, selected_subjects):
+        print("그런 과목명은 없습니다. 다시 입력해 주세요.")
+        input_subject = input()
         
-
-
-    print('[  ', end='')
-    for subject in secondary_name_subject:
-        print(subject, end='   ')
-    print(']', end='')
-
-
-
-    print("\n이 수능 데이터에 존재하는 과목은 위와 같습니다.\n조회를 원하시는 과목을 선택하세요.")
-    selected_subject = input()
-    while selected_subject not in secondary_name_subject:
-        print("그런 과목 명은 없습니다. 다시 입력해 주세요.")
-        selected_subject = input()
-
-
-
-    return selected_subject
+    return selected_subjects
