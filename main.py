@@ -21,6 +21,6 @@ else:
     wanted_sub_f = extract.get_subj_gen(score_array, selected_subjects[0], selected_subjects[1], 0)
     wanted_sub_m = extract.get_subj_gen(score_array, selected_subjects[0], selected_subjects[1], 1)
 
-    dg.score_graph(wanted_sub_f, wanted_sub_m)
+    dg.score_graph(wanted_sub_m, wanted_sub_f)
 
     
