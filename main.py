@@ -19,7 +19,7 @@ else:
     score_array = extract.get_arr('20231231.csv')
 
     wanted_sub_f = extract.get_subj_gen(score_array, selected_subjects[0], selected_subjects[1], 0)
-    wanted_sub_m = extract.get_subj_gen(score_array, selected_subjects[0], selected_subjects[1], 0)
+    wanted_sub_m = extract.get_subj_gen(score_array, selected_subjects[0], selected_subjects[1], 1)
 
     dg.score_graph(wanted_sub_f, wanted_sub_m)
 
