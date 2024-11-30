@@ -46,8 +46,7 @@ def select(file):
 
     year = 2023
 
-    print("이 수능 데이터는 %d 년의 데이터입니다. 연도를 선택하세요." %year)
-    input_year = input()
+    print("이 수능 데이터는 %d 년의 데이터입니다." %year)
 
     for subject in sjt_arr:
         print(subject[0], ":", subject[1])
