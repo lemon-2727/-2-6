@@ -44,10 +44,10 @@ def select(file):
 
     sjt_arr = find_subjects(file)
 
-    year = 2023
+    year = 2024
 
-    print("이 수능 데이터는 %d 년의 데이터입니다." %year)
-
+    print("이 수능 데이터는 %d 년도 수능의 데이터입니다." %year)
+    
     for subject in sjt_arr:
         print(subject[0], ":", subject[1])
 
