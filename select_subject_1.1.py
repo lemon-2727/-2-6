@@ -10,15 +10,17 @@ def select_year():
     
     years = [2021, 2022, 2023, 2024]
 
-    print("\n이 수능 데이터가 존재하는 연도는 [  ", end='')
+    print("\n이 수능 데이터가 존재하는 연도는 [   ", end='')
 
     for year in years:
-        print("%d년도   ", year, end='')
+        print("%d년도   " %year, end='')
 
-    print("] 입니다. 조회를 원하시는 연도를 선택해 주세요.")
+    print("] 입니다. 조회를 원하시는 연도를 선택해 주세요. 예시 : 2024")
 
     input_year = int(input())
 
+    print("이 수능 데이터는 %d 년도 수능의 데이터입니다. (%d년 실시)" %(input_year, input_year - 1))
+    
     # 실시년도로 반환 (파일명에 적힌 것과 동일한 연도)
     return input_year - 1
 
@@ -67,7 +69,7 @@ def select(file):
 
     sjt_arr = find_subjects(file)
 
-    print("이 수능 데이터는 %d 년도 수능의 데이터입니다. (%d년 실시)" %(year, year - 1))
+   
 
     for subject in sjt_arr:
         print(subject[0], ":", subject[1])
