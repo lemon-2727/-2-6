@@ -13,7 +13,7 @@ def select_year():
     print("\n이 수능 데이터가 존재하는 연도는 [  ", end='')
 
     for year in years:
-        print("%s년도   ", end='')
+        print("%d년도   ", year, end='')
 
     print("] 입니다. 조회를 원하시는 연도를 선택해 주세요.")
 
