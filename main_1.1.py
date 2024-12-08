@@ -27,6 +27,6 @@ else:
     wanted_sub_f = extract.get_subj_gen(score_array, selected_subjects[1], selected_subjects[0], '여성')
     wanted_sub_m = extract.get_subj_gen(score_array, selected_subjects[1], selected_subjects[0], '남성')
 
-    dg.score_graph(wanted_sub_m, wanted_sub_f)
+    dg.score_graph(wanted_sub_m, wanted_sub_f, year)
 
     exit()
