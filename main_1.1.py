@@ -17,7 +17,7 @@ except:
 # 문제 없이 파일을 읽을 수 있는 경우
 else:
     
-    selected_subjects = ss.select(file)
+    selected_subjects = ss.select(file, year)
 
     print("선택된 과목 : %s - %s" %(selected_subjects[0], selected_subjects[1]))
     print("위 과목의 표준점수 분포 그래프는 다음과 같습니다.")
