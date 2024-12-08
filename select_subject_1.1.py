@@ -26,25 +26,32 @@ def select_year():
 
 
 
-#input  : file handle
-#output : [과목 분류, 세부 과목명] 이 과목별로 저장되어 있는 2차원 ndarray
-def find_subjects(file):
-    data = []
 
+#input  : file handle, selected year(type:int)
+#output : [과목 분류, 세부 과목명] 이 과목별로 저장되어 있는 2차원 ndarray 
+
+def find_subjects(file, input_year):
     columns = [0, 1]
-
     subjects = np.genfromtxt(file, delimiter=',', usecols=columns, skip_header=1, dtype=str, encoding='CP949')
+    
+    # 공백 제거
+    unique_subjects = np.char.strip(subjects)
+    unique_subjects = np.unique(unique_subjects, axis=0)
 
-    unique_subjects = np.unique(subjects, axis=0)
-
-    order = ['국어', '수학', '사회탐구', '과학탐구', '직업탐구']
+    if input_year == 2021:
+        order = ['국어', '수학', '사회탐구', '과학탐구', '직업탐구', '제2외국어 한문']
+    else:
+        order = ['국어', '수학', '사회탐구', '과학탐구', '직업탐구']
 
     order_dict = {key: i for i, key in enumerate(order)}
-    sort_indices = np.argsort([order_dict[row[0]] for row in unique_subjects])
+
+    # 안전한 정렬 인덱스 생성
+    sort_indices = np.argsort([order_dict.get(row[0], float('inf')) for row in unique_subjects])
 
     sorted_subjects = unique_subjects[sort_indices]
 
     return sorted_subjects
+
 
 # input  : sjt_arr - [과목 분류, 세부 과목명] 이 과목별로 저장되어 있는 2차원 ndarray,
 #          input_sjt : 사용자가 입력한 세부 과목명
@@ -63,11 +70,11 @@ def input_subject_check(sjt_arr, input_sjt, selected_subjects):
     return extc
 
 
-# input  : file handle
+# input  : file handle, selected year
 # output : [과목 분류, 세부 과목명] 이 과목별로 저장되어 있는 2차원 ndarray
-def select(file):
+def select(file, input_year):
 
-    sjt_arr = find_subjects(file)
+    sjt_arr = find_subjects(file, input_year)
 
    
 
@@ -83,4 +90,8 @@ def select(file):
         input_subject = input()
         
     return selected_subjects
+
+
+
+    
 
